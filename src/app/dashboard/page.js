@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React,{useState} from "react";
 import Layout from "../../components/Layout";
 
 import { TbWorld } from "react-icons/tb";
@@ -17,15 +17,49 @@ import SearchInput from "@/components/dropdownButton/SearchInput";
 import DownloadButton from "@/components/dropdownButton/Download";
 import { HiMenuAlt4 } from "react-icons/hi";
 import { RxCross2 } from "react-icons/rx";
+import ReceiveComponent from "../../components/headerButton/receive/ReceiveComponent";
+import WithdrawalComponent from "../../components/headerButton/WithdrawalComponent";
+import TransferComponent from "../../components/headerButton/TransferComponent";
+import ConvertComponent from "../../components/headerButton/ConvertComponent";
 
 const DashboardPage = () => {
   
-  const [showReceiveData, setShowReceiveData] = useState(false);
+  const [activeButton, setActiveButton] = useState("dashboard");
 
-  const handleReceiveButtonClick = () => {
-    setShowReceiveData(true);
+  const handleButtonClick = (buttonName) => {
+    setActiveButton(buttonName);
   };
 
+  const renderComponent = () => {
+    switch (activeButton) {
+      case "Receive":
+        return <ReceiveComponent />;
+      case "Withdrawal":
+        return <WithdrawalComponent />;
+      case "Transfer":
+        return <TransferComponent />;
+      case "Convert":
+        return <ConvertComponent />;
+      default:
+        return (
+          <div className=" w-80 mx-auto flex flex-col justify-center items-center mt-12">
+            <div className="text-2xl font-bold">
+              <h1>No transactions yet</h1>
+            </div>
+            <div className="text-center py-3">
+              <p>
+                Create your first merchant and start accepting cryptocurrency
+                payments for your business
+              </p>
+            </div>
+            <div className="bg-blue-800 font-bold text-white-500 w-100 px-20 py-5 rounded-lg">
+              <button>Get address</button>
+            </div>
+          </div>
+        );
+    }
+  };
+  
   return (
     <Layout>
       {/* Your dashboard content */}
@@ -72,28 +106,29 @@ const DashboardPage = () => {
 
             {/* Third row: Withdrawal button */}
             <div className="flex gap-6 items-center">
-            <button
-                  className="bg-white-500 text-xl hover:bg-gray-400 text-white px-4 py-4 gap-16 rounded-smlarge flex justify-between items-center"
-                  onClick={handleReceiveButtonClick}
-                >
-                  Receive
-                  <span className="bg-white-200 p-3 rounded-full">
-                    <GoArrowUpRight className="" />
-                  </span>
-                </button>
-              <button className="bg-white-500 text-xl hover:bg-gray-400 text-white px-4 py-4 gap-16 rounded-smlarge flex justify-between items-center">
+              <button className={`bg-white-500 text-xl hover:bg-gray-400 text-white px-4 py-4 gap-16 rounded-smlarge flex 
+              justify-between items-center `}  onClick={() => handleButtonClick("Receive")}>
+                Receive
+                <span className="bg-white-200 p-3 rounded-full">
+                  <GoArrowUpRight className="" />
+                </span>
+              </button>
+              <button className="bg-white-500 text-xl hover:bg-gray-400 text-white px-4 py-4 gap-16 rounded-smlarge flex 
+              justify-between items-center"   onClick={() => handleButtonClick("Withdrawal")}>
                 Withdrawal
                 <span className="bg-white-200 p-3 rounded-full">
                   <GoArrowDownLeft className="" />
                 </span>
               </button>
-              <button className="bg-white-500 text-xl hover:bg-gray-400 text-white px-4 py-4 gap-16 rounded-smlarge flex justify-between items-center">
+              <button className="bg-white-500 text-xl hover:bg-gray-400 text-white px-4 py-4 gap-16 rounded-smlarge
+               flex justify-between items-center" onClick={() => handleButtonClick("Transfer")}>
                 Transfer
                 <span className="bg-white-200 p-3 rounded-full">
                   <LuArrowRightLeft className="" />
                 </span>
               </button>
-              <button className="bg-white-500 text-xl hover:bg-gray-400 text-white px-4 py-4 gap-16 rounded-smlarge flex justify-between items-center">
+              <button className="bg-white-500 text-xl hover:bg-gray-400 text-white px-4 py-4 gap-16 rounded-smlarge
+               flex justify-between items-center"   onClick={() => handleButtonClick("Convert")}>
                 Convert
                 <span className="bg-white-200 p-3 rounded-full">
                   <PiArrowsCounterClockwiseBold className="" />
@@ -121,21 +156,9 @@ const DashboardPage = () => {
           </div>
         </div>
 
-        <div className=" w-80 mx-auto  flex flex-col justify-center  items-center mt-12">
-          <div className="text-2xl font-bold">
-            <h1>No transactions yet</h1>
-          </div>
-          <div className=" text-center py-3">
-            <p>
-              Create your first merchant and start accepting cryptocurrency
-              payments for your business
-            </p>
-          </div>
+       
 
-          <div className=" bg-blue-800 font-bold text-white-500 w-100 px-20 py-5 rounded-lg">
-            <button>Get address</button>
-          </div>
-        </div>
+        {renderComponent()}
       </>
     </Layout>
   );
