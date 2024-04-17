@@ -25,7 +25,7 @@ const Sidebar = () => {
         {/* Sidebar Items */}
         <ul>
           {/* Personal Wallet */}
-          <Link href="personalWallet">
+          <Link href="/">
           <li  className={`mb-4 flex items-center p-3 rounded-lg  hover:bg-white-100 ${activeItem === 'personal' ? 'bg-white-100' : ''}`}  onClick={() => setActiveItem('personal')}>
             <FiHome className="mr-5" size={25} />
             
