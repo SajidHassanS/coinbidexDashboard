@@ -7,6 +7,7 @@ import { FaPlus } from "react-icons/fa6";
 import BalanceWallet from '../balanceWallet/BalanceWallet';
 import Merchants from '../merchants/Merchants';
 import Support from '../support/Support';
+import Link from 'next/link';
 
 const Sidebar = () => {
   // State to track active state
@@ -24,29 +25,30 @@ const Sidebar = () => {
         {/* Sidebar Items */}
         <ul>
           {/* Personal Wallet */}
+          <Link href="personalWallet">
           <li  className={`mb-4 flex items-center p-3 rounded-lg  hover:bg-white-100 ${activeItem === 'personal' ? 'bg-white-100' : ''}`}  onClick={() => setActiveItem('personal')}>
             <FiHome className="mr-5" size={25} />
-            <a href="#" >
+            
               Personal Wallet
-            </a>
+           
           </li>
-          
-          {/* Business Wallet */}
+          </Link>
+          <Link href="businessWallet">
           <li className={`mb-4 flex items-center p-3 rounded-lg  hover:bg-white-100 ${activeItem === 'business' ? 'bg-white-100' : ''}`}  onClick={() => setActiveItem('business')}>
             <FiCreditCard className="mr-5" size={25} />
-            <a href="#" >
-              Business Wallet
-            </a>
-          </li>
           
-          {/* P2P Trade Wallet */}
+              Business Wallet
+          
+          </li>
+          </Link>
+          <Link href="p2pTrade">
           <li className={`mb-4 flex items-center p-3 rounded-lg  hover:bg-white-100 ${activeItem === 'trade' ? 'bg-white-100' : ''}`}  onClick={() => setActiveItem('trade')}>
             <HiMiniArrowPathRoundedSquare className="mr-5" size={25} />
-            <a href="#">
+            
               P2P Trade Wallet
-            </a>
+          
           </li>
-         
+          </Link>
         </ul>
         <div className=''>
         <BalanceWallet/>

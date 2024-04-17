@@ -19,10 +19,10 @@ import { HiMenuAlt4 } from "react-icons/hi";
 import { RxCross2 } from "react-icons/rx";
 import ReceiveComponent from "../../components/headerButton/receive/ReceiveComponent";
 import WithdrawalComponent from "../../components/headerButton/WithdrawalComponent";
-import TransferComponent from "../../components/headerButton/TransferComponent";
-import ConvertComponent from "../../components/headerButton/ConvertComponent";
+import TransferComponent from "../../components/headerButton/transfer/TransferComponent";
+import ConvertComponent from "../../components/headerButton/convert/ConvertComponent";
 
-const DashboardPage = () => {
+const personalWallet = () => {
   
   const [activeButton, setActiveButton] = useState("dashboard");
 
@@ -42,6 +42,25 @@ const DashboardPage = () => {
         return <ConvertComponent />;
       default:
         return (
+          <>
+            <div className="flex p-8 justify-between border-b border-gray-400">
+           <div className=" flex gap-4">
+             <div className="w-30">
+               <DropdownTransaction />
+             </div>
+             <div className="w-30">
+               <DropdownPeriod />
+             </div>
+           </div>
+           <div className="flex gap-3">
+             <div>
+               <SearchInput />
+             </div>
+             <div>
+               <DownloadButton />
+             </div>
+           </div>
+         </div>
           <div className=" w-80 mx-auto flex flex-col justify-center items-center mt-12">
             <div className="text-2xl font-bold">
               <h1>No transactions yet</h1>
@@ -56,6 +75,8 @@ const DashboardPage = () => {
               <button>Get address</button>
             </div>
           </div>
+         
+         </>
         );
     }
   };
@@ -137,24 +158,7 @@ const DashboardPage = () => {
             </div>
           </header>
         </div>
-        <div className="flex p-8 justify-between border-b border-gray-400">
-          <div className=" flex gap-4">
-            <div className="w-30">
-              <DropdownTransaction />
-            </div>
-            <div className="w-30">
-              <DropdownPeriod />
-            </div>
-          </div>
-          <div className="flex gap-3">
-            <div>
-              <SearchInput />
-            </div>
-            <div>
-              <DownloadButton />
-            </div>
-          </div>
-        </div>
+       
 
        
 
@@ -164,4 +168,4 @@ const DashboardPage = () => {
   );
 };
 
-export default DashboardPage;
+export default personalWallet;
