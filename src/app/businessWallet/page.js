@@ -81,16 +81,21 @@ const businessWallet = () => {
     <Layout>
       {/* Your dashboard content */}
       <>
-        <div className=" bg-blue-200 rounded-b-large    ">
+        <div className=" bg-gradient-to-r from-black-600 to-black-500 focus:from-pink-500 focus:to-yellow-500  rounded-b-large    ">
           <header className="  text-white md:px-10 md:pb-10 md:pt-10  ">
             {/* Left side: CRMS */}
             <div className=" flex justify-between">
               <div>
-                <span className="text-xl font-bold">Dashboard</span>
+                <span className="text-xl font-bold text-white-300">Dashboard</span>
               </div>
 
               {/* Right side: Icons */}
               <div className="flex items-center">
+              <div className="bg-white-500 flex p-3 mr-3 rounded-full">
+                 <h1>API documentation</h1>
+                
+                </div>
+                <div className=" text-white-500 mx-5 text-4xl"><span>|</span></div>
                 <div className="bg-white-500  p-3 mr-3 rounded-full">
                   <FaRegMoon className=" cursor-pointer  " size={20} />
                 </div>
@@ -117,8 +122,8 @@ const businessWallet = () => {
 
             {/* Second row: Available Balance */}
             <div className="md:my-10">
-              <span className="block">Available Balance</span>
-              <span className="block font-bold text-4xl">$0.0</span>
+              <span className="block text-white-300">Available Balance</span>
+              <span className="block font-bold text-4xl text-white-300">$0.0</span>
             </div>
 
             {/* Third row: Withdrawal button */}

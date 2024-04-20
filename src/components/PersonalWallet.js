@@ -19,6 +19,8 @@ import { RxCross2 } from "react-icons/rx";
 import Layout from "./Layout";
 import TransferComponent from "./headerButton/transfer/TransferComponent";
 import WithdrawalComponent from "./headerButton/WithdrawalComponent";
+import ReceiveComponent from "./headerButton/receive/ReceiveComponent";
+import ConvertComponent from "./headerButton/convert/ConvertComponent";
 
 const PersonalWallet = () => {
   const [activeButton, setActiveButton] = useState("dashboard");

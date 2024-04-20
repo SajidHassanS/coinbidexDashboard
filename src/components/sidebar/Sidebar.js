@@ -8,10 +8,10 @@ import BalanceWallet from '../balanceWallet/BalanceWallet';
 import Merchants from '../merchants/Merchants';
 import Support from '../support/Support';
 import Link from 'next/link';
-
 const Sidebar = () => {
   // State to track active state
   const [activeItem, setActiveItem] = useState('personal');
+
 
   return (
     <div className={`bg-white-500 text-white w-96 mt-7 pl-8 flex-shrink-0 ${activeItem === 'sidebar' ? 'bg-white-200' : ''}`}>

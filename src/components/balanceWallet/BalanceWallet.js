@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { IoSearch } from "react-icons/io5";
 import { FaPlus } from "react-icons/fa6";
 import Image from "next/image";
+import FormModal from "./FormModal";
 
 const coinsData = [
   {
-    name: "CRMS",
-    imageSrc: "coin/CRMS.svg",
+    name: "CBE",
+    imageSrc: "/logonew.png",
     quantity: "0.0000000",
     value: "$0.00",
   },
@@ -22,21 +23,18 @@ const coinsData = [
     quantity: "0.0000000",
     value: "$0.00",
   },
-
   {
     name: "BNB",
     imageSrc: "coin/BNB.svg",
     quantity: "0.0000000",
     value: "$0.00",
   },
-
   {
     name: "BTC",
     imageSrc: "coin/BTC.svg",
     quantity: "0.0000000",
     value: "$0.00",
   },
-
   {
     name: "CGPT",
     imageSrc: "coin/CGPT.svg",
@@ -57,14 +55,19 @@ const coinsData = [
   },
   // Add more coin data objects as needed
 ];
+
 const BalanceWallet = () => {
+  const [showFormModal, setShowFormModal] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const initialCoinsToShow = 7;
-  const remainingCoins = coinsData.slice(initialCoinsToShow);
+
+  const toggleFormModal = () => {
+    setShowFormModal(!showFormModal);
+  };
 
   const toggleModal = () => {
     setShowModal(!showModal);
   };
+
   return (
     <div>
       <div className="flex justify-between items-center">
@@ -74,13 +77,17 @@ const BalanceWallet = () => {
 
         <div className="flex gap-3">
           <IoSearch size={25} />
-          <FaPlus size={25} />
+          <FaPlus
+            onClick={toggleFormModal}
+            style={{ cursor: "pointer" }}
+            size={25}
+          />
         </div>
       </div>
 
       <div className="mt-8">
         {/* Map through the coinsData array and render each coin */}
-        {coinsData.slice(0, initialCoinsToShow).map((coin, index) => (
+        {coinsData.map((coin, index) => (
           <div
             key={index}
             className="flex justify-between hover:bg-white-100 p-2 rounded-lg"
@@ -98,7 +105,7 @@ const BalanceWallet = () => {
       </div>
       <div className="flex justify-center p-3 bg-white-100 rounded-lg my-5 ">
         {/* Button to show more coins */}
-        {remainingCoins.length > 0 && (
+        {coinsData.length > 7 && (
           <button onClick={toggleModal} className="     ">
             Show More
           </button>
@@ -108,7 +115,7 @@ const BalanceWallet = () => {
       {showModal && (
         <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50">
           <div className="bg-white p-8 rounded-lg">
-            {remainingCoins.map((coin, index) => (
+            {coinsData.slice(7).map((coin, index) => (
               <div
                 key={index}
                 className="flex justify-between hover:bg-white-100 p-2 rounded-lg"
@@ -126,7 +133,10 @@ const BalanceWallet = () => {
           </div>
         </div>
       )}
-        
+      {/* Form Modal */}
+      {showFormModal && (
+        <FormModal onClose={toggleFormModal} />
+      )}
     </div>
   );
 };
