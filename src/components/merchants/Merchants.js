@@ -5,12 +5,10 @@ import { GoPlus } from "react-icons/go";
 const Merchants = () => {
   return (
     <>
-    <div className='text-lg font-bold'>
-        <h1>Merchants</h1>
-    </div>
-     <div className="flex justify-center items-center gap-3 p-3 bg-white-100 rounded-lg my-5 ">
+   
+     <div className="flex justify-between items-center gap-10  ">
             <GoPlus size={25}/>
-          <button  className="     ">
+          <button  className=" ">
            Create merchant
           </button>
        

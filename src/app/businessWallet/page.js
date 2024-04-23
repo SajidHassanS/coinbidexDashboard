@@ -21,10 +21,21 @@ import ReceiveComponent from "../../components/headerButton/receive/ReceiveCompo
 import WithdrawalComponent from "../../components/headerButton/WithdrawalComponent";
 import TransferComponent from "../../components/headerButton/transfer/TransferComponent";
 import ConvertComponent from "../../components/headerButton/convert/ConvertComponent";
-
+import Merchants from "@/components/merchants/Merchants";
+import MerchantModal from "@/components/sidebar/MerchantModal";
 const businessWallet = () => {
   
   const [activeButton, setActiveButton] = useState("dashboard");
+
+  const [showFormModal, setShowFormModal] = useState(false);
+
+
+
+  
+
+  const toggleFormModal = () => {
+    setShowFormModal(!showFormModal);
+  };
 
   const handleButtonClick = (buttonName) => {
     setActiveButton(buttonName);
@@ -58,17 +69,23 @@ const businessWallet = () => {
            </div>
          </div>
           <div className=" w-80 mx-auto flex flex-col justify-center items-center mt-12">
-            <div className="text-2xl font-bold">
-              <h1>No transactions yet</h1>
-            </div>
+           
             <div className="text-center py-3">
               <p>
                 Create your first merchant and start accepting cryptocurrency
                 payments for your business
               </p>
             </div>
-            <div className="bg-blue-800 font-bold text-white-500 w-100 px-20 py-5 rounded-lg">
-              <button>Get address</button>
+            <div className="bg-blue-800 font-bold text-white-500  px-5 py-5 rounded-lg" onClick={toggleFormModal}
+              style={{ cursor: "pointer" }}>
+           
+          <div >
+                <Merchants   />
+              </div>
+          
+           
+         
+              
             </div>
           </div>
          
@@ -170,6 +187,14 @@ const businessWallet = () => {
        
 
         {renderComponent()}
+
+        {showFormModal && (
+          <div className="fixed inset-0 z-40 flex justify-center   items-center bg-black-500 bg-opacity-50">
+          <div className="bg-white-500  rounded-large ">
+        <MerchantModal onClose={toggleFormModal} />
+        </div>
+              </div>
+      )}
       </>
     </Layout>
   );

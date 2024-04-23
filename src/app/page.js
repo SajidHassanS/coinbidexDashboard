@@ -30,14 +30,5 @@ const token = localStorage.getItem("token")
      // Update state to indicate user is logged in
   };
 
-  return (
-    <>
-      {/* Conditional rendering based on login state */}
-      {isLoggedIn ? (
-        <PersonalWallet /> // Render wallet if logged in
-      ) : (
-        <Login onLoginSuccess={handleLoginSuccess} /> // Pass success callback
-      )}
-    </>
-  );
+  return null;
 }

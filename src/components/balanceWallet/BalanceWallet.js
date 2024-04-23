@@ -76,11 +76,11 @@ const BalanceWallet = () => {
         </div>
 
         <div className="flex gap-3">
-          <IoSearch size={25} />
+          <IoSearch size={20} />
           <FaPlus
             onClick={toggleFormModal}
             style={{ cursor: "pointer" }}
-            size={25}
+            size={20}
           />
         </div>
       </div>
@@ -106,7 +106,7 @@ const BalanceWallet = () => {
       <div className="flex justify-center p-3 bg-white-100 rounded-lg my-5 ">
         {/* Button to show more coins */}
         {coinsData.length > 7 && (
-          <button onClick={toggleModal} className="     ">
+          <button onClick={toggleModal} className="">
             Show More
           </button>
         )}

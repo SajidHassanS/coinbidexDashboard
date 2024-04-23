@@ -1,17 +1,17 @@
 "use client";
-import React, { useState } from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import axios from 'axios';
-import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import 'react-tabs/style/react-tabs.css';
+import React, { useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import axios from "axios";
+import { FaFacebook, FaTwitter, FaInstagram } from "react-icons/fa";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import "react-tabs/style/react-tabs.css";
 
 function Login({ onLoginSuccess }) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [mobile, setMobile] = useState('');
-  const [code, setCode] = useState('+1');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [mobile, setMobile] = useState("");
+  const [code, setCode] = useState("+1");
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -30,22 +30,23 @@ function Login({ onLoginSuccess }) {
 
     try {
       const response = await axios.post(
-        'https://imdfx-newserver-production.up.railway.app/api/coinbdixlogin',
+        "https://imdfx-newserver-production.up.railway.app/api/coinbdixlogin",
         loginData
       );
-            console.log(response.data)
-            const token = response.data
-            localStorage.setItem("token", token.userId)
-            onLoginSuccess()
+
+      console.log(response.status);
+      const token = response.data;
+      localStorage.setItem("token", token.userId);
       if (response.status === 200) {
         // Successful login, inform the parent component
+      router.push('/');
+
         onLoginSuccess(); // Call the success callback
-        router.push('/personalwallet'); // Redirect on success
       } else {
-        setError('Invalid login credentials');
+        setError("Invalid login credentials");
       }
     } catch (error) {
-      setError('Login failed. Please check your credentials and try again.');
+      setError("Login failed. Please check your credentials and try again.");
     } finally {
       setIsLoading(false);
     }
@@ -73,7 +74,9 @@ function Login({ onLoginSuccess }) {
             {/* Email login */}
             <TabPanel className="mt-4">
               <div>
-                <label className="block text-sm font-medium mb-2">Email/ID</label>
+                <label className="block text-sm font-medium mb-2">
+                  Email/ID
+                </label>
                 <input
                   type="email"
                   className="form-control w-full border border-gray-300 p-2 rounded-md"
@@ -84,7 +87,9 @@ function Login({ onLoginSuccess }) {
               </div>
 
               <div className="mb-4">
-                <label className="block text-sm font-medium mb-2">Password</label>
+                <label className="block text-sm font-medium mb-2">
+                  Password
+                </label>
                 <input
                   type="password"
                   className="form-control w-full border border-gray-300 p-2 rounded-md"
@@ -112,7 +117,7 @@ function Login({ onLoginSuccess }) {
                 className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 focus:outline-none"
                 disabled={isLoading}
               >
-                {isLoading ? 'Logging In...' : 'Login'}
+                {isLoading ? "Logging In..." : "Login"}
               </button>
 
               <div className="mt-4 text-center">
@@ -123,16 +128,16 @@ function Login({ onLoginSuccess }) {
               </div>
 
               {error && (
-                <div className="text-red-500 text-center mt-4">
-                  {error}
-                </div>
+                <div className="text-red-500 text-center mt-4">{error}</div>
               )}
             </TabPanel>
 
             {/* Mobile login */}
             <TabPanel className="mt-4">
               <div>
-                <label className="block text-sm font-medium mb-2">Mobile Phone</label>
+                <label className="block text-sm font-medium mb-2">
+                  Mobile Phone
+                </label>
                 <div className="flex space-x-2 items-center">
                   <select
                     className="w-20 border border-gray-300 p-2 rounded-md"
@@ -156,7 +161,9 @@ function Login({ onLoginSuccess }) {
               </div>
 
               <div className="mb-4">
-                <label className="block text-sm font-medium mb-2">Password</label>
+                <label className="block text-sm font-medium mb-2">
+                  Password
+                </label>
                 <input
                   type="password"
                   className="form-control w/full border border-gray-300 p-2 rounded-md"
@@ -171,13 +178,11 @@ function Login({ onLoginSuccess }) {
                 className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 focus:outline-none"
                 disabled={isLoading}
               >
-                {isLoading ? 'Logging In...' : 'Login'}
+                {isLoading ? "Logging In..." : "Login"}
               </button>
 
               {error && (
-                <div className="text-red-500 text-center mt-4">
-                  {error}
-                </div>
+                <div className="text-red-500 text-center mt-4">{error}</div>
               )}
             </TabPanel>
           </Tabs>
