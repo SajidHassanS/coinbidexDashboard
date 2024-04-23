@@ -113,8 +113,8 @@ const BalanceWallet = () => {
       </div>
       {/* Modal */}
       {showModal && (
-        <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50">
-          <div className="bg-white p-8 rounded-lg">
+        <div className="fixed inset-0 flex justify-center items-center bg-black-500 bg-opacity-50">
+          <div className="bg-white-500 p-8 rounded-lg">
             {coinsData.slice(7).map((coin, index) => (
               <div
                 key={index}
@@ -135,7 +135,11 @@ const BalanceWallet = () => {
       )}
       {/* Form Modal */}
       {showFormModal && (
+          <div className="fixed inset-0 z-40 flex justify-center   items-center bg-black-500 bg-opacity-50">
+          <div className="bg-white-500  rounded-large ">
         <FormModal onClose={toggleFormModal} />
+        </div>
+              </div>
       )}
     </div>
   );
