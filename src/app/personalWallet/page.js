@@ -208,8 +208,8 @@ const Page = () => {
           </div>
 
           {/* Second row: Available Balance */}
-          <div className="md:my-10">
-            <span>Available Balance</span>
+          <div className="md:my-10 flex flex-row">
+            {/* <span>Available Balance</span> */}
             <span className="font-bold text-4xl">$0.0</span>
           </div>
 
