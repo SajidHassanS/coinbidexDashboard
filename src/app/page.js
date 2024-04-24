@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Login from './login/page';
-import Page from './personalwallet/page';
 
 export default function Home() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -34,9 +33,7 @@ export default function Home() {
   // Optionally, return something if needed
   return (
     <>
-      {isLoggedIn ? (
-        <Page /> // If logged in, show the wallet
-      ) : (
+      {isLoggedIn ? null : (
         <Login onLoginSuccess={handleLoginSuccess} /> // If not logged in, render login
       )}
     </>
