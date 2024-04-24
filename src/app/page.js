@@ -5,13 +5,17 @@ import Login from './login/page';
 import PersonalWallet from '@/components/PersonalWallet';
 
 export default function Home() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Default to not logged in
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isMounted, setIsMounted] = useState(false); // To track client-side mount
   const router = useRouter();
-const token = localStorage.getItem("token")
+
   useEffect(() => {
-    const checkLoginStatus = async () => {
-      const isUserLoggedIn = false; // Example - Replace with actual login check logic
-      setIsLoggedIn(isUserLoggedIn);
+    setIsMounted(true); // This effect runs only on the client side
+  }, []);
+
+  useEffect(() => {
+    if (isMounted) {
+      const token = localStorage.getItem("token"); // Access only if mounted
 
       if (!token) {
         console.log("User not logged in - Redirecting to login.");
@@ -20,15 +24,13 @@ const token = localStorage.getItem("token")
         console.log("User logged in - Redirecting to personal wallet.");
         router.push('/personalwallet'); // Redirect to personal wallet
       }
-    };
-
-    checkLoginStatus(); // Check login status on mount
-  }, [router]); // Dependency on router ensures reactivity
+    }
+  }, [isMounted, router]); // Dependency on isMounted and router ensures reactivity
 
   const handleLoginSuccess = () => {
     setIsLoggedIn(true);
-     // Update state to indicate user is logged in
   };
 
-  return null;
+  // Optionally, return something if needed
+  return null; // You can change this depending on your component requirements
 }
