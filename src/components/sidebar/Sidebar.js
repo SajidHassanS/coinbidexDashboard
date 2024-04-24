@@ -29,7 +29,7 @@ const Sidebar = () => {
           <Link href="/" passHref>
             <li
               className={`mb-4 flex items-center p-3 rounded-lg hover:bg-white-100 ${
-                pathname === '/' ? 'bg-white-100' : ''
+                pathname === '/personalWallet' ? 'bg-white-100' : ''
               }`}
             >
               <FiHome className="mr-5" size={25} />
