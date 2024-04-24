@@ -32,5 +32,13 @@ export default function Home() {
   };
 
   // Optionally, return something if needed
-  return null; // You can change this depending on your component requirements
+  return (
+    <>
+      {isLoggedIn ? (
+        <PersonalWallet /> // If logged in, show the wallet
+      ) : (
+        <Login onLoginSuccess={handleLoginSuccess} /> // If not logged in, render login
+      )}
+    </>
+  ); // You can change this depending on your component requirements
 }
