@@ -21,7 +21,7 @@ export default function Home() {
         router.push('/login'); // Redirect to login page
       } else {
         console.log("User logged in - Redirecting to personal wallet.");
-        router.push('/personalwallet'); // Redirect to personal wallet
+        router.push('/personalWallet'); // Redirect to personal wallet
       }
     }
   }, [isMounted, router]); // Dependency on isMounted and router ensures reactivity
